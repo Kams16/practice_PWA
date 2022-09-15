@@ -4,7 +4,7 @@ const aFileToCache = [
     "./", "./index.html", "./manifest.json", "./images/hello-pwa.png"
 ];
 
-const sVersion = "v4";
+const sVersion = "v7";
 
 // 오프라인 페이지 설정
 const offlineFallbackPage = "offline.html";

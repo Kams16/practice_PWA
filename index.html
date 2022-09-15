@@ -4,6 +4,8 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
   <!-- PWA 매너페스트 파일 연결, 상태바 테마색상을 흰색으로 변경 -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ffffff">
@@ -37,9 +39,9 @@
   </style>
 </head>
 
-<body>
+<body class="main_body">
   <div class="container">
-    <h1>안녕하세요!</h1>
+    <h1>안녕하세요!!</h1>
     <img src="./images/hello-pwa.png" alt=""></img>
     <p>by JS</p>
   </div>
@@ -47,18 +49,19 @@
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
-        .register('./service_worker.js')    // register() 메서드를 사용해 서비스 워커 등록
-        .then(function () {                 // register() 메서드의 실행이 성공하면 실행
+        .register('./service_worker.js')      // register() 메서드를 사용해 서비스 워커 등록
+        .then(function(reg) {                 // register() 메서드의 실행이 성공하면 실행
           console.log('서비스 워커가 등록됨!');
+          
+          // 업데이트 발견
+          reg.addEventListener("updatefound", function() {
+            // 설치 중인 새로운 서비스 워커
+            const newServiceWorker = reg.installing;
+            console.log("New update found!");
+          });
         })
     }
 
-
-    function func1() {
-      console.log("func1");
-    }
-
-    
   </script>
 </body>
 
