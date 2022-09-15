@@ -4,12 +4,17 @@ const aFileToCache = [
     "./", "./index.html", "./manifest.json", "./images/hello-pwa.png"
 ];
 
+const sVersion = "v4";
+
+// 오프라인 페이지 설정
+const offlineFallbackPage = "offline.html";
+
 // 서비스 워커 설치하고 캐시 파일 저장
 self.addEventListener("install", function (pEvent) {
-    console.log("서비스 워커 설치함!");
+    console.log("서비스 워커 설치함!", sVersion);
     pEvent.waitUntil(
         caches.open(sCacheName).then(function (pCache) {
-            console.log("파일을 캐시에 저장함!");
+            console.log("파일을 캐시에 저장함!", sVersion);
             return pCache.addAll(aFileToCache);
         })
     );
@@ -17,7 +22,7 @@ self.addEventListener("install", function (pEvent) {
 
 // 고유 번호를 할당받은 서비스 워커 작동
 self.addEventListener("activate", function (pEvent) {
-    console.log("서비스 워커 동작 시작!");
+    console.log("서비스 워커 동작 시작!", sVersion);
     console.log(pEvent);
 });
 
